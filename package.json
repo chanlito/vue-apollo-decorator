@@ -18,14 +18,18 @@
   },
   "devDependencies": {
     "@types/graphql": "^14.0.7",
+    "apollo-client": "^2.4.13",
     "graphql": "^14.1.1",
     "typescript": "^3.3.3333",
+    "vue": "^2.5.22",
     "vue-apollo": "^3.0.0-beta.27",
     "vue-class-component": "^7.0.1"
   },
   "peerDependencies": {
+    "apollo-client": "^2.4.x",
     "graphql": "^14.x.x",
     "typescript": "^3.x.x",
+    "vue": "^2.5.x",
     "vue-apollo": "^3.0.0-beta.27",
     "vue-class-component": "^7.x.x"
   }
