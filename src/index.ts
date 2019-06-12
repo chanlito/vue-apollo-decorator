@@ -23,8 +23,10 @@ export function SmartQuery<I, R = any, V = any>(
 export function SmartQuery<I, R = any, V = any>(
   options: DocumentNode | QueryComponentProperty<I, R, V>
 ) {
-  return createDecorator((componentOptions: any, key) => {
-    componentOptions.apollo = componentOptions.apollo || {};
-    componentOptions.apollo[key] = options;
-  });
+  return (target: any, key: string) => {
+    createDecorator((componentOptions: any, k: string) => {
+      componentOptions.apollo = componentOptions.apollo || {};
+      componentOptions.apollo[k] = options;
+    })(target, key);
+  };
 }
