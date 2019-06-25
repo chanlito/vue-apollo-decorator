@@ -1,4 +1,5 @@
 import { DocumentNode } from 'graphql';
+import Vue from 'vue';
 import {
   ApolloVueThisType,
   ExtendableVueApolloQueryOptions
@@ -16,17 +17,17 @@ type QueryComponentProperty<V, R, T> =
   | ((this: ApolloVueThisType<V>) => VueApolloQueryOptions<V, R, T>)
   | VueApolloQueryOptions<V, R, T>;
 
-export function SmartQuery(query: DocumentNode): VueDecorator;
-export function SmartQuery<I, R = any, V = any>(
-  options: QueryComponentProperty<I, R, V>
-): VueDecorator;
-export function SmartQuery<I, R = any, V = any>(
-  options: DocumentNode | QueryComponentProperty<I, R, V>
-) {
-  return (target: any, key: string) => {
-    createDecorator((componentOptions: any, k: string) => {
-      componentOptions.apollo = componentOptions.apollo || {};
-      componentOptions.apollo[k] = options;
-    })(target, key);
-  };
+export function SmartQuery<
+  VueComponent extends Vue | DocumentNode,
+  QueryResult = any,
+  QueryVariables = any
+>(
+  options: VueComponent extends Vue
+    ? QueryComponentProperty<VueComponent, QueryResult, QueryVariables>
+    : DocumentNode
+): VueDecorator {
+  return createDecorator((componentOptions: any, k: string) => {
+    componentOptions.apollo = componentOptions.apollo || {};
+    componentOptions.apollo[k] = options;
+  });
 }
