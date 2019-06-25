@@ -17,6 +17,9 @@ type QueryComponentProperty<V, R, T> =
   | ((this: ApolloVueThisType<V>) => VueApolloQueryOptions<V, R, T>)
   | VueApolloQueryOptions<V, R, T>;
 
+/**
+ * Define a smart query on a Vue component.
+ */
 export function SmartQuery<
   VueComponent extends Vue | DocumentNode,
   QueryResult = any,
