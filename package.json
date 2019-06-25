@@ -18,7 +18,11 @@
     "url": "https://github.com/chanlito/vue-apollo-decorator"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/graphql": "^14.2.2",
