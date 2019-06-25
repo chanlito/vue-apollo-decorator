@@ -21,20 +21,20 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@types/graphql": "^14.0.7",
-    "apollo-client": "^2.4.13",
-    "graphql": "^14.1.1",
-    "typescript": "^3.3.3333",
-    "vue": "^2.5.22",
-    "vue-apollo": "^3.0.0-beta.27",
-    "vue-class-component": "^7.0.1"
+    "@types/graphql": "^14.2.2",
+    "apollo-client": "^2.6.3",
+    "graphql": "^14.3.1",
+    "typescript": "^3.5.2",
+    "vue": "^2.6.10",
+    "vue-apollo": "^3.0.0-rc.1",
+    "vue-class-component": "^7.1.0"
   },
   "peerDependencies": {
-    "apollo-client": "^2.4.x",
+    "apollo-client": "^2.6.x",
     "graphql": "^14.x.x",
     "typescript": "^3.x.x",
-    "vue": "^2.5.x",
-    "vue-apollo": "^3.0.0-beta.27",
+    "vue": "^2.6.x",
+    "vue-apollo": "^3.0.0-rc.1",
     "vue-class-component": "^7.x.x"
   }
 }
