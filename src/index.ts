@@ -31,7 +31,7 @@ interface SubscribeToMoreOptionsPatched<C, R, V> {
   updateQuery?: (
     this: C,
     previousQueryResult: R,
-    options: { subscriptionData: { data: R }; variables?: V }
+    options: { subscriptionData: { data: any }; variables?: any }
   ) => R;
   onError?: (error: Error) => void;
 }
