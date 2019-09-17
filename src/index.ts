@@ -1,4 +1,3 @@
-import { SubscribeToMoreOptions } from 'apollo-client';
 import { DocumentNode } from 'graphql';
 import Vue from 'vue';
 import { VueApolloQueryDefinition } from 'vue-apollo/types/options';
@@ -16,13 +15,23 @@ export function SmartQuery<C = any, R = any, V = any>(
 }
 
 interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
-  extends VueApolloQueryDefinition<C, R> {
+  extends Omit<
+    VueApolloQueryDefinition<C, R>,
+    'variables' | 'subscribeToMore'
+  > {
   variables?: (this: C) => V | V;
   subscribeToMore?:
-    | SubscribeToMoreOptionsPatched<C, V>
-    | Array<SubscribeToMoreOptionsPatched<C, V>>;
+    | SubscribeToMoreOptionsPatched<C, R, V>
+    | Array<SubscribeToMoreOptionsPatched<C, R, V>>;
 }
 
-type SubscribeToMoreOptionsPatched<C, V> = SubscribeToMoreOptions & {
+interface SubscribeToMoreOptionsPatched<C, R, V> {
+  document: DocumentNode;
   variables?: (this: C) => V | V;
-};
+  updateQuery?: (
+    this: C,
+    previousQueryResult: R,
+    options: { subscriptionData: { data: R }; variables?: V }
+  ) => R;
+  onError?: (error: Error) => void;
+}

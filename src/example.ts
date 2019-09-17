@@ -95,6 +95,11 @@ export class TodoList3 extends TodoList {
         document: gql``,
         variables() {
           return this.vars;
+        },
+        updateQuery(prev, { subscriptionData: { data }, variables }) {
+          // data: QueryResult
+          // variables: QueryVariables | undefined
+          return prev;
         }
       }
     ]
