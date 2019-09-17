@@ -83,7 +83,15 @@ export class TodoList3 extends TodoList {
     },
     update(data) {
       // data: QueryResult
-    }
+    },
+    subscribeToMore: [
+      {
+        document: gql``,
+        variables() {
+          return this.vars;
+        }
+      }
+    ]
   })
   todos!: Todo[];
 }
