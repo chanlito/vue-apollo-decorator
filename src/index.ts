@@ -15,21 +15,14 @@ export function SmartQuery<C = any, R = any, V = any>(
   });
 }
 
-type VueApolloQueryDefinitionPatched<
-  C = any,
-  R = any,
-  V = any
-> = VueApolloQueryDefinition<C, R> & Patch<C, V>;
-
-type Patch<C, V> = VariablesPatched<C, V> & {
+interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
+  extends VueApolloQueryDefinition<C, R> {
+  variables?: (this: C) => V | V;
   subscribeToMore?:
     | SubscribeToMoreOptionsPatched<C, V>
     | Array<SubscribeToMoreOptionsPatched<C, V>>;
-};
+}
 
-type VariablesPatched<C, V> = {
+type SubscribeToMoreOptionsPatched<C, V> = SubscribeToMoreOptions & {
   variables?: (this: C) => V | V;
 };
-
-type SubscribeToMoreOptionsPatched<C, V> = SubscribeToMoreOptions &
-  VariablesPatched<C, V>;
