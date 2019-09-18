@@ -21,13 +21,13 @@ interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
   > {
   variables?: (this: C) => V | V;
   subscribeToMore?:
-    | SubscribeToMoreOptionsPatched<C, R, V>
-    | Array<SubscribeToMoreOptionsPatched<C, R, V>>;
+    | SubscribeToMoreOptionsPatched<C, R>
+    | Array<SubscribeToMoreOptionsPatched<C, R>>;
 }
 
-interface SubscribeToMoreOptionsPatched<C, R, V> {
+interface SubscribeToMoreOptionsPatched<C, R> {
   document: DocumentNode;
-  variables?: (this: C) => V | V;
+  variables?: (this: C) => any | { [key: string]: any };
   updateQuery?: (
     this: C,
     previousQueryResult: R,
