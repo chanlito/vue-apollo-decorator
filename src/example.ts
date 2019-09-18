@@ -63,6 +63,9 @@ export class TodoList2 extends TodoList {
     update(data) {
       // data: QueryResult
     },
+    result({ data, errors, loading }) {
+      this.doThings();
+    },
     subscribeToMore: {
       document: gql``,
       variables() {
@@ -71,6 +74,10 @@ export class TodoList2 extends TodoList {
     }
   })
   todos!: Todo[];
+
+  doThings() {
+    //
+  }
 }
 
 @Component
