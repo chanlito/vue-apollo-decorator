@@ -17,7 +17,7 @@ export function SmartQuery<C = any, R = any, V = any>(
 
 interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
   extends Omit<
-    VueApolloQueryDefinition<C, R>,
+    VueApolloQueryDefinition<R, V>,
     'variables' | 'subscribeToMore' | 'result'
   > {
   variables?: (this: C) => V | V;

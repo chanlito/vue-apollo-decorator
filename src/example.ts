@@ -104,9 +104,14 @@ export class TodoList3 extends TodoList {
           return this.vars;
         },
         updateQuery(prev, { subscriptionData: { data }, variables }) {
-          // data: QueryResult
-          // variables: QueryVariables | undefined
-          return prev;
+          return {
+            ...prev,
+            todos: [
+              { id: '1', title: 'Int' },
+              { id: '2', title: 'Float' },
+              { id: '3', title: 'String' }
+            ]
+          };
         }
       }
     ]
@@ -121,6 +126,7 @@ interface Todo {
 
 interface QueryResult {
   todos: Todo[];
+  __typename?: 'Query';
 }
 
 interface QueryVariables {
