@@ -1,7 +1,7 @@
 import { ApolloQueryResult } from 'apollo-client';
 import { DocumentNode } from 'graphql';
 import Vue from 'vue';
-import { VueApolloQueryDefinition } from 'vue-apollo/types/options';
+import { VueApolloQueryDefinition, VueApolloSubscribeToMoreOptions } from 'vue-apollo/types/options';
 import { createDecorator, VueDecorator } from 'vue-class-component';
 
 export function SmartQuery<C = any, R = any, V = any>(
