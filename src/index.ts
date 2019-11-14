@@ -15,25 +15,20 @@ export function SmartQuery<C = any, R = any, V = any>(
   });
 }
 
+type OverrideThis<F, T> = F extends (...args: infer A) => infer B
+  ? (this: T, ...args: A) => B
+  : F;
+
+type OverrideAllThis<O, T> = {
+  [key in keyof O]: OverrideThis<O[key], T>
+};
+
 interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
-  extends Omit<
-    VueApolloQueryDefinition<R, V>,
-    'variables' | 'subscribeToMore' | 'result'
-  > {
-  variables?: (this: C) => V | V;
+  extends OverrideAllThis<Omit<VueApolloQueryDefinition<R, V>, 'subscribeToMore'>, C> {
   subscribeToMore?:
-    | SubscribeToMoreOptionsPatched<C, R>
-    | Array<SubscribeToMoreOptionsPatched<C, R>>;
-  result?: (this: C, result: ApolloQueryResult<R>, key: string) => void;
+    | SubscribeToMoreOptionsPatched<C, R, V>
+    | Array<SubscribeToMoreOptionsPatched<C, R, V>>;
 }
 
-interface SubscribeToMoreOptionsPatched<C, R> {
-  document: DocumentNode;
-  variables?: (this: C) => any | { [key: string]: any };
-  updateQuery?: (
-    this: C,
-    previousQueryResult: R,
-    options: { subscriptionData: { data: any }; variables?: any }
-  ) => R;
-  onError?: (error: Error) => void;
-}
+type SubscribeToMoreOptionsPatched<C, R, V> =
+  OverrideAllThis<VueApolloSubscribeToMoreOptions<R, V>, C>;
