@@ -25,23 +25,23 @@
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
+    "@types/node": "^12.12.7",
     "apollo-client": "^2.6.4",
     "apollo-link-http-common": "^0.2.15",
-    "graphql": "^14.5.6",
+    "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "typescript": "^3.5.3",
+    "typescript": "^3.7.2",
     "vue": "^2.6.10",
-    "vue-apollo": "^3.0.0-rc.6",
+    "vue-apollo": "^3.0.0",
     "vue-class-component": "^7.1.0",
-    "vue-property-decorator": "^8.2.2"
+    "vue-property-decorator": "^8.3.0"
   },
   "peerDependencies": {
     "apollo-client": "^2.6.x",
     "graphql": "^14.x.x",
     "typescript": "^3.x.x",
     "vue": "^2.6.x",
-    "vue-apollo": "^3.0.0-rc.5",
+    "vue-apollo": "^3.x.x",
     "vue-class-component": "^7.x.x"
   }
 }
