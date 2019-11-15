@@ -34,7 +34,7 @@ type SubscribeToMoreOptionsPatched<C, R, V> = OverrideAllThis<
   Omit<VueApolloSubscribeToMoreOptions<R, V>, 'updateQuery' | 'variables'>,
   C
 > & {
-  variables?: (this: C) => V | V;
+  variables?: (this: C) => any;
   updateQuery?: UpdateQueryFn<C, R, any, any>; // TODO: How should we pass subscript data & variables types?
 };
 
