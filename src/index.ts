@@ -1,3 +1,4 @@
+import { UpdateQueryFn } from 'apollo-client/core/watchQueryOptions';
 import { DocumentNode } from 'graphql';
 import Vue from 'vue';
 import {
@@ -28,13 +29,14 @@ type OverrideAllThis<O, T> = {
 type VueApolloQueryDefinitionWithoutVariablesAndSubscribeToMore<
   R = any,
   V = any
-> = Omit<VueApolloQueryDefinition<R, V>, 'variables' | 'subscribeToMore'>;
+> = Omit<VueApolloQueryDefinition<R, V>, 'subscribeToMore' | 'variables'>;
 
 type SubscribeToMoreOptionsPatched<C, R, V> = OverrideAllThis<
-  Omit<VueApolloSubscribeToMoreOptions<R, V>, 'variables'>,
+  Omit<VueApolloSubscribeToMoreOptions<R, V>, 'updateQuery' | 'variables'>,
   C
 > & {
   variables?: (this: C) => V | V;
+  updateQuery?: UpdateQueryFn<R, any, any>; // TODO: How should we pass subscript data & variables types?
 };
 
 interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any>
