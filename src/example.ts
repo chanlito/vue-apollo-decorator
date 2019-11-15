@@ -1,3 +1,4 @@
+import { ApolloQueryResult } from 'apollo-client';
 import gql from 'graphql-tag';
 import { Component, Vue } from 'vue-property-decorator';
 
@@ -16,14 +17,14 @@ export class TodoList extends Vue {
     `,
     variables() {
       return this.vars;
-    }
+    },
   })
   todos!: Todo[];
 
   get vars(): QueryVariables {
     return {
       limit: 10,
-      skip: 0
+      skip: 0,
     };
   }
 }
@@ -41,7 +42,7 @@ export class TodoList1 extends TodoList {
     `,
     variables() {
       return this.vars;
-    }
+    },
   })
   todos!: Todo[];
 }
@@ -60,7 +61,7 @@ export class TodoList2 extends TodoList {
     variables() {
       return this.vars;
     },
-    update(data) {
+    update(data: QueryResult) {
       // data: QueryResult
     },
     result({ data, errors, loading }) {
@@ -70,8 +71,8 @@ export class TodoList2 extends TodoList {
       document: gql``,
       variables() {
         return this.vars;
-      }
-    }
+      },
+    },
   })
   todos!: Todo[];
 
@@ -94,9 +95,10 @@ export class TodoList3 extends TodoList {
     variables() {
       return this.vars;
     },
-    update(data) {
+    update(data: QueryResult) {
       // data: QueryResult
     },
+    result(data: ApolloQueryResult<QueryResult>) {},
     subscribeToMore: [
       {
         document: gql``,
@@ -109,12 +111,12 @@ export class TodoList3 extends TodoList {
             todos: [
               { id: '1', title: 'Int' },
               { id: '2', title: 'Float' },
-              { id: '3', title: 'String' }
-            ]
+              { id: '3', title: 'String' },
+            ],
           };
-        }
-      }
-    ]
+        },
+      },
+    ],
   })
   todos!: Todo[];
 }
