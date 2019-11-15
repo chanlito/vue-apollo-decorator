@@ -106,6 +106,7 @@ export class TodoList3 extends TodoList {
           return this.vars;
         },
         updateQuery(prev, { subscriptionData: { data }, variables }) {
+          const vm: TodoList3 = this;
           return {
             ...prev,
             todos: [
