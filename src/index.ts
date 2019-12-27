@@ -3,7 +3,7 @@ import Vue from 'vue';
 import {
   VueApolloQueryDefinition,
   VueApolloSubscribeToMoreOptions,
-} from 'vue-apollo/types/options';
+} from '@vue/apollo-option/types/options';
 import { createDecorator, VueDecorator } from 'vue-class-component';
 
 export function SmartQuery<C = any, R = any, V = any>(
